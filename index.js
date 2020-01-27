@@ -6,6 +6,9 @@ let {StudentList} = require('./model');
 let mongoose = require('mongoose');
 let app = express();
 
+//Importando desde el config.js
+let {DATABASE_URL,PORT} = require('./config');
+
 //segunda capa, parte publica que cuando cargue el browser va a agregar el index.html por default,
 //se debe agregar en una carpeta con el nombre public.
 app.use(express.static('public'));
@@ -113,5 +116,5 @@ function closeServer(){
         });
     });
 }
-runServer(8080,"mongodb://localhost/university");
+runServer(PORT,DATABASE_URL);
 module.exports = {app, runServer,closeServer};
